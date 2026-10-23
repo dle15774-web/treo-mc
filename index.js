@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT || 3000);
 
 client.on('ready', async () => {
-  console.log(`Đã đăng nhập: ${client.user.tag}`);
+  console.log(`Đã đăng nhập thành công vào tài khoản: ${client.user.tag}`);
   
   client.user.setPresence({
     activities: [{
@@ -21,11 +21,10 @@ client.on('ready', async () => {
       },
       state: "Đang sinh tồn cùng bạn bè",
       details: "Chơi trên Server 24/7",
-      startTimestamp: 1713400000000 // Giữ nguyên số này để mốc thời gian luôn đếm tiếp không bị reset về 0
+      startTimestamp: Date.now() // Đã sửa thành hàm lấy thời gian thực chuẩn của Discord
     }],
     status: "online"
   });
 });
 
-// Code sẽ tự động lấy Token được cấu hình an toàn trên Render
 client.login(process.env.DISCORD_TOKEN);
